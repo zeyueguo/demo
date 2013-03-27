@@ -1,26 +1,154 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../libs/bootstrap/css/bootstrap.css" media="all"/>
-    <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.js"></script>
+    <script src="../libs/jquery/jquery-1.9.1.min.js"></script>
+    <script src="diy.js"></script>
     <style type="text/css">
+        .container { width: 900px; }
+        .item { margin-bottom: 10px; padding: 0 10px; clear: both; display: block; zoom: 1; }
+        .item:after {
+            visibility:hidden;
+            display:block;
+            font-size:0;
+            content:" ";
+            clear:both;
+            height:0;
+        }
 
+        .item .til {
+            float: left;
+            line-height: 16px;
+            color: #4C4C4C;
+            font-size: 14px;
+            margin-right: 10px;
+            padding-top: 7px;
+            text-align: right;
+            width: 130px;
+         }
+        .item .con { float: left; width: 300px; margin-right: 15px;}
+        .item .info { float: left; padding-top: 7px; font-size: 12px; }
+
+        .error .con {
+            background: #F8DBDB;
+            border-color: #E77776;
+        }
+        .error .info {
+            color: #E46C6E;
+        }
     </style>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span2">
-            <!--Sidebar content-->
-        </div>
-        <div class="span10">
-            <h1>验证测试</h1>
-            <!--Body content-->
-        </div>
-    </div>
-</div>
+<div class="container">
+    <h1>验证测试</h1>
 
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>完善资料</legend>
+            <div class="item" id="name">
+                <label for="input01" class="til">姓名：</label>
+                <div class="con">
+                    <input type="text" placeholder="请输入姓名">
+                </div>
+                <div class="info">
+                    请输入姓名
+                </div>
+            </div>
+            <div class="item" id="sex">
+                <label for="input01" class="til">性别：</label>
+                <div class="con">
+                    <label>
+                        <input type="radio" value="boy" name="sex">男
+                    </label>
+                    <label>
+                        <input type="radio" value="girl" name="sex">女
+                    </label>
+                </div>
+                 <div class="info">
+                    请选择性别
+                </div>
+            </div>
+            <div class="item" id="food">
+                <label for="input01" class="til">多选：</label>
+                <div class="con">
+                    <label class="checkbox">
+                        <input type="checkbox" id="inlineCheckbox3" value="option3"> 苹果
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="inlineCheckbox3" value="option3"> 香蕉
+                    </label>
+                </div>
+                <div class="info">
+                    请选择性别
+                </div>
+            </div>
+            <div class="item" id="map">
+                <label for="input01" class="til">所在省市：</label>
+                <div class="con">
+                    <select id="f_2379_c_3547_b_1_ddlProvince" name="address01">
+                        <option value="-1">请选择所在省份</option>
+                        <option value="0">北京市</option>
+                        <option value="1">天津市</option>
+                        <option value="2">上海市</option>
+                        <option value="3">重庆市</option>
+                        <option value="4">河北省</option>
+                        <option value="5">山西省</option>
+                        <option value="6">台湾省</option>
+                        <option value="7">辽宁省</option>
+                        <option value="8">吉林省</option>
+                        <option value="9">黑龙江省</option>
+                        <option value="10">江苏省</option>
+                        <option value="11">浙江省</option>
+                        <option value="12">安徽省</option>
+                        <option value="13">福建省</option>
+                        <option value="14">江西省</option>
+                        <option value="15">山东省</option>
+                        <option value="16">河南省</option>
+                        <option value="17">湖北省</option>
+                        <option value="18">湖南省</option>
+                        <option value="19">广东省</option>
+                        <option value="20">甘肃省</option>
+                        <option value="21">四川省</option>
+                        <option value="22">贵州省</option>
+                        <option value="23">海南省</option>
+                        <option value="24">云南省</option>
+                        <option value="25">青海省</option>
+                        <option value="26">陕西省</option>
+                        <option value="27">广西壮族自治区</option>
+                        <option value="28">西藏自治区</option>
+                        <option value="29">宁夏回族自治区</option>
+                    </select>
+                    <select id="f_2379_c_3547_b_1_ddlCity" name="address01">
+                        <option value="-1">请选择所在城市</option>
+                    </select>
+                </div>
+                <div class="info">
+                    请选择省市
+                </div>
+            </div>
+            <div class="item" id="intor">
+                <label for="input01" class="til">简介：</label>
+                <div class="con">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="请输入简介"></textarea>
+                </div>
+                <div class="info">
+                    请输入简介
+                </div>
+            </div>
+            <div class="item" class="til" id="pic">
+                <label for="input01" class="til">图片上传：</label>
+                <div class="con">
+                    <input type="file" name="" id="" />
+                </div>
+                <div class="info">
+                    请选择合适的图片上传
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
 </body>
 </html>
