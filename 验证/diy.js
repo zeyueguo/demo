@@ -65,26 +65,11 @@
 
 
 
-            $("#f_2869_c_4237_b_1_saytext").bind({
-                focusin: function () {
-                    if ($(this).val() == "字数不限" || $(this).val() == "输入有误")  $(this).val("");
-                }, focusout: function () {
-                    if ($(this).val() == "" || $(this).val() == "字数不限" || $(this).val() == "输入有误" ) {
-                        theError($(this));
-                    }
-                }, change: function () {
-                    if ($(this).val() == "字数不限" || $(this).val() == "" || $(this).val() == "输入有误") {
-                        theError($(this));
-                    } else {
-                        theRight($(this));
-                    }
-                }
-            });
 
            
-            $("#f_2869_c_4237_b_1_userfile").bind("change",function(){
+            /*$("#f_2869_c_4237_b_1_userfile").bind("change",function(){
                 $("#f_2869_c_4237_b_1_userText").html($(this).val());
-            });
+            });*/
 
             $("#f_2869_c_4237_b_1_fc_bm").submit(function () {
                 $("#f_2869_c_4237_b_1_bid").val("7");//反馈分类id
