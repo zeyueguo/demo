@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+/* 清除浮动 */
+.ks-clearfix:after {
+	content: '\20';
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.ks-clearfix {
+	*zoom: 1;
+}
+
+.hidden {
+	display: none;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+#container {
+	border: 1px solid #ccc;
+	height: 195px;
+	width: 220px;
+	font: 12px/1.6 palatino, georgia, serif;
+	padding: 4px;
+	height: auto;
+	width: auto;
+	position: absolute;
+	z-index: 1000;
+	display:none;
+}
+
+.opt a {
+	text-decoration: none;
+}
+
+.prev-year {
+	background-position: 0 -180px;
+	left: 3px;
+	top: 4px;
+}
+
+.prev-month {
+	background-position: 0 -60px;
+	left: 24px;
+	top: 4px;
+	padding-left: 18px;
+	padding-right: 5px;
+}
+
+.next-year {
+	background-position: 0 -120px;
+	right: 3px;
+	top: 4px;
+}
+
+.next-month {
+	background-position: 0 0;
+	right: 24px;
+	top: 4px;
+	padding-right: 18px;
+	padding-left: 5px;
+}
+
+a.title {
+	border: 1px solid #8cc6ff;
+}
+
+.head {
+	width: 182px;
+	height: 19px;
+	overflow: hidden;
+	margin-top: 4px;
+	border-bottom: 1px dashed #c9c9c9;
+	padding-bottom: 2px;
+}
+
+.head span {
+	float: left;
+	width: 25px;
+	text-align: center;
+	line-height: 19px;
+	margin-right: 1px;
+	display: inline;
+}
+
+/**
+		*设置每行的样式
+		*/
+.row {
+	width: 192px;
+}
+
+.row {
+	width: 182px;
+	height: auto;
+	background-color: white;
+	margin-top: 4px;
+}
+
+.row a {
+	color: #004499;
+	float: left;
+	width: 23px;
+	text-align: center;
+	line-height: 22px;
+	text-decoration: none;
+	border: 1px solid #fff;
+}
+
+/**
+		*设置单元格的样式
+		*/
+.cell { /*background: #234eff;*/
+	border: 2px solid #ccc;
+	float: left;
+	width: 25px;
+	text-align: center;
+	line-height: 19px;
+	margin-right: 1px;
+	display: inline;
+}
+
+/**
+*单元格被选中的样式
+*/
+.highlight {
+	border: 1px solid #fed22f; 
+	background: #ffe45c 
+}
