@@ -1,18 +1,18 @@
 (function($){
-	//²ÎÊı
+	//å‚æ•°
    var setting={
-	  container_idName: 'container',//ÈİÆ÷µÄÀàÃû
-	  column_space: 10,//ÁĞ¼ä¾à
-	  cell_selector: '.data',//ÒªÅÅÁĞµÄ×©¿éµÄÑ¡ÔñÆ÷£¬contextÎªÕû¸öÍâ²¿ÈİÆ÷
+	  container_idName: 'container',//å®¹å™¨çš„ç±»å
+	  column_space: 10,//åˆ—é—´è·
+	  cell_selector: '.data',//è¦æ’åˆ—çš„ç –å—çš„é€‰æ‹©å™¨ï¼Œcontextä¸ºæ•´ä¸ªå¤–éƒ¨å®¹å™¨
 	  pre_year_selector: '.prev-year',
 	  next_year_selector: '.next-year',
 	  pre_month_selector: '.prev-month',
 	  next_month_selector: '.next-month'
    },
    //
-   calendar=$.calendar={},//¶ÔÍâĞÅÏ¢¶ÔÏó
-   $container=null;//ÈİÆ÷
-   $date = new Date(); //µ±Ç°µÄÊ±¼ä¶ÔÏó
+   calendar=$.calendar={},//å¯¹å¤–ä¿¡æ¯å¯¹è±¡
+   $container=null;//å®¹å™¨
+   $date = new Date(); //å½“å‰çš„æ—¶é—´å¯¹è±¡
    $year = $date.getFullYear();
    $month = $date.getMonth();
    $week = $date.getDay();
@@ -22,9 +22,9 @@
 	      setting=$.extend(setting,opt);
 		  $container=calendar.$container=$(this);
 		  
-		  //1³õÊ¼»¯ÈÕÆÚµÄÊä³ö
+		  //1åˆå§‹åŒ–æ—¥æœŸçš„è¾“å‡º
 		  _init($('#'+setting.container_idName));
-		  //2 ¸øÒ³ÃæµÄa±êÇ©×¢²áÊÂ¼ş´¦Àíº¯Êı
+		  //2 ç»™é¡µé¢çš„aæ ‡ç­¾æ³¨å†Œäº‹ä»¶å¤„ç†å‡½æ•°
 		  $(setting.pre_year_selector).live('click',_handPreYear);
 		  
 		  $(setting.pre_month_selector).live('click',_handPreMonth);
@@ -36,7 +36,7 @@
 		  // $('.row '+setting.css_selector).live('click',_handClickCell);
 		  $('.row '+setting.cell_selector).live('click',_handClickCell);
 	
-		  //3 ¸øinput°ó¶¨ÊÂ¼ş
+		  //3 ç»™inputç»‘å®šäº‹ä»¶
 		  $('#datepicker').bind('focus',_handInputFocus);
 		  //$('#datepicker').bind('blur',_handInputBlur);
 		  $('#'+setting.container_idName).bind('mouseleave ',_handMouthOutCont);
@@ -44,9 +44,9 @@
 	   }
    });
    
-   //³õÊ¼»¯±í¸ñµÄÊä³ö
+   //åˆå§‹åŒ–è¡¨æ ¼çš„è¾“å‡º
    function _init(element){
-		//Êä³ö²Ù×÷ 
+		//è¾“å‡ºæ“ä½œ 
 	  	_calcTableContent($year,$month,element);
 		
 		
@@ -54,9 +54,9 @@
    
    function _calcTableContent(year,month,element){
 	   var html = '';
-		html = ('<div class="opt"><a href="javascript:void(0);" class="prev-year">&lt;&lt;</a><a href="javascript:void(0);" class="prev-month">&lt;</a><a href="javascript:void(0);" class="title">'+year+'Äê'+(month+1)+'ÔÂ</a><a href="javascript:void(0);" class="next-month">&gt;</a><a href="javascript:void(0);" class="next-year">&gt;&gt;</a></div>');
-		//Êä³öĞÇÆÚ ±êÌâ
-		html += ('<div class="head"><span >Ìì</span><span >Ò»</span><span >¶ş</span><span >Èı</span><span >ËÄ</span><span >Îå</span><span >Áù</span></div>');
+		html = ('<div class="opt"><a href="javascript:void(0);" class="prev-year">&lt;&lt;</a><a href="javascript:void(0);" class="prev-month">&lt;</a><a href="javascript:void(0);" class="title">'+year+'å¹´'+(month+1)+'æœˆ</a><a href="javascript:void(0);" class="next-month">&gt;</a><a href="javascript:void(0);" class="next-year">&gt;&gt;</a></div>');
+		//è¾“å‡ºæ˜ŸæœŸ æ ‡é¢˜
+		html += ('<div class="head"><span >å¤©</span><span >ä¸€</span><span >äºŒ</span><span >ä¸‰</span><span >å››</span><span >äº”</span><span >å…­</span></div>');
 		//debugger;
 		var daysOfMonth = _calcDaysForMonth(year,month+1);
 		var firstDayOfMonth = _calcFirstDayPosition(year,month);
@@ -95,19 +95,19 @@
 		//alert(alert(element[0].tagName));
 		element.html(html);
    }
-   function creatColumn(){//´´½¨ÁĞ
-      waterfall.column_num=calculateColumns();//ÁĞÊı
-	  //Ñ­»·´´½¨ÁĞ
+   function creatColumn(){//åˆ›å»ºåˆ—
+      waterfall.column_num=calculateColumns();//åˆ—æ•°
+	  //å¾ªç¯åˆ›å»ºåˆ—
 	  var html='';
 	  for(var i=0;i<waterfall.column_num;i++){
 	     html+='<div class="'+setting.column_className+'" style="width:'+setting.column_width+'px; display:inline-block; *display:inline;zoom:1; margin-left:'+setting.column_space/2+'px;margin-right:'+setting.column_space/2+'px; vertical-align:top; overflow:hidden"></div>';
 	  }
-	  $container.prepend(html);//²åÈëÁĞ
-	  return $('.'+setting.column_className,$container);//ÁĞ¼¯ºÏ
+	  $container.prepend(html);//æ’å…¥åˆ—
+	  return $('.'+setting.column_className,$container);//åˆ—é›†åˆ
    }
    
    /**
-   *j ¼ÆËãÒ»¸öÔÂÓĞ¶àÉÙÌì
+   *j è®¡ç®—ä¸€ä¸ªæœˆæœ‰å¤šå°‘å¤©
    */
    function _calcDaysForMonth(year,month){
 	  var days = (new Date(+(new Date(year, month, 1)) - 86400000)).getDate();
@@ -116,14 +116,14 @@
    }
    
    /**
-   *¼ÆËãÕâ¸öÔÂµÄµÚÒ»ÌìÏÔÊ¾µÄµÄÎ»ÖÃ£¬¿ÉÒÔ¸ù¾İËüµÄĞÇÆÚÀ´¼ÆËã
+   *è®¡ç®—è¿™ä¸ªæœˆçš„ç¬¬ä¸€å¤©æ˜¾ç¤ºçš„çš„ä½ç½®ï¼Œå¯ä»¥æ ¹æ®å®ƒçš„æ˜ŸæœŸæ¥è®¡ç®—
    */
    function _calcFirstDayPosition(year,month){
 	   
 		return new Date(year, month,1).getDay();
    }
    
-   //·µ»ØÉÏÒ»ÄêµÄÊı¾İ
+   //è¿”å›ä¸Šä¸€å¹´çš„æ•°æ®
    function _handPreYear(){
 	   console.log(1);
 	   var element = $('#'+setting.container_idName);
@@ -145,7 +145,7 @@
 	   
 	   _calcTableContent(year,month,element);
    }
-   //·µ»ØÉÏÒ»¸öÔÂµÄÊı¾İ
+   //è¿”å›ä¸Šä¸€ä¸ªæœˆçš„æ•°æ®
    function _handPreMonth(){
 	    console.log(2);
 		var element = $('#'+setting.container_idName);
@@ -169,7 +169,7 @@
 	   _calcTableContent(year,month,element);
    }
    
-   //·µ»ØÏÂÒ»ÄêµÄÊı¾İ
+   //è¿”å›ä¸‹ä¸€å¹´çš„æ•°æ®
    function _handNextYear(){
 	    console.log(3);
 		 var element = $('#'+setting.container_idName);
@@ -191,7 +191,7 @@
 	   _calcTableContent(year,month,element);
    }
    
-   //·µ»ØÏÂÒ»¸öÔÂµÄÊı¾İ
+   //è¿”å›ä¸‹ä¸€ä¸ªæœˆçš„æ•°æ®
    function _handNextMonth(){
 	    console.log(4);
 				var element = $('#'+setting.container_idName);
@@ -246,11 +246,11 @@
 		//$('.row '+setting.cell_selector).each(function(index, element) {
             $('.row '+setting.cell_selector).removeClass('highlight');
 			$(this).addClass('highlight');
-			//»ñÈ¡±£´æÔÚa±êÇ©ÀïÃæµÄÊı¾İ
+			//è·å–ä¿å­˜åœ¨aæ ‡ç­¾é‡Œé¢çš„æ•°æ®
 			var $year = $(this).attr('data-year');
 			var $month = $(this).attr('data-month');
 			var $day = $(this).attr('data-day');
-			//ÉèÖÃÄê¡¢ÔÂ¡¢ÈÕµÄÖµ
+			//è®¾ç½®å¹´ã€æœˆã€æ—¥çš„å€¼
 			console.log($year+'-'+$month+'-'+$day);
 			$('#datepicker').val($year+'-'+(new Number($month)+1)+'-'+$day);
 			
@@ -276,7 +276,7 @@
 	function _handInputBlur(){
 		//$('#'+setting.container_idName).hide();
 		
-		//ÈÃdivÈİÆ÷µÄleft£¬top»¹Ô­£¬Òª²»È»Ã¿´Îµã»÷inputµÄÊ±ºòleft£¬top¶¼»áÔÚÔ­À´µÄ»ù´¡ÉÏ¼Ó
+		//è®©divå®¹å™¨çš„leftï¼Œtopè¿˜åŸï¼Œè¦ä¸ç„¶æ¯æ¬¡ç‚¹å‡»inputçš„æ—¶å€™leftï¼Œtopéƒ½ä¼šåœ¨åŸæ¥çš„åŸºç¡€ä¸ŠåŠ 
 		//$('#'+setting.container_idName)[0].style.left = 0;
 		//$('#'+setting.container_idName)[0].style.top = 0;
 		
@@ -285,7 +285,7 @@
 	function _handMouthOutCont(){
 		$('#'+setting.container_idName).hide();
 		
-		//ÈÃdivÈİÆ÷µÄleft£¬top»¹Ô­£¬Òª²»È»Ã¿´Îµã»÷inputµÄÊ±ºòleft£¬top¶¼»áÔÚÔ­À´µÄ»ù´¡ÉÏ¼Ó
+		//è®©divå®¹å™¨çš„leftï¼Œtopè¿˜åŸï¼Œè¦ä¸ç„¶æ¯æ¬¡ç‚¹å‡»inputçš„æ—¶å€™leftï¼Œtopéƒ½ä¼šåœ¨åŸæ¥çš„åŸºç¡€ä¸ŠåŠ 
 		$('#'+setting.container_idName)[0].style.left = 0;
 		$('#'+setting.container_idName)[0].style.top = 0;
 	}

@@ -2,19 +2,107 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="calendar.css" rel="stylesheet">
-<script src="http://imageapp.leku.com/staticprj/public/js/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="calendar.js" charset="gbk"></script>
+<script src="../libs/jquery/jquery-1.9.1.min.js"></script>
 <title>Calendar</title>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-size: 90%;
+        }
+        .clmonth {
+            border-collapse: collapse;
+        }
+        .clmonth caption {
+            text-align: left;
+            font: bold 110% Georgia, "Times New Roman", Times, serif;
+            padding-bottom: 6px;
+        }
+        .clmonth th {
+            border: 1px solid #AAAAAA;
+            border-bottom: none;
+            padding: 2px 8px 2px 8px;
+            background-color: #CCCCCC;
+            color: #3F3F3F;
+            font: 80% Verdana, Geneva, Arial, Helvetica, sans-serif;
+        }
+        .clmonth td {
+            text-align: center;
+            border: 1px solid #EAEAEA;
+            font: 80% Verdana, Geneva, Arial, Helvetica, sans-serif;
+            padding: 2px 4px 2px 4px;
+            vertical-align: top;
+        }
+        .clmonth td.previous, .clmonth td.next {
+            background-color: #F6F6F6;
+            color: #C6C6C6;
+        }
+        .clmonth td.active {
+            background-color: #B1CBE1;
+            color: #2B5070;
+            border: 2px solid #4682B4;
+        }
+    </style>
 </head>
 <body>
-	<div id="wrapper">
-		<h2 style="text-align:center;margin-top:30px;">jquery calendar插件</h2>
-        日期：<input type="text" id="datepicker"/>
-		<div id="container">
-
-		</div>
-	</div>
+<table class="clmonth" summary="Calendar for June 2004">
+    <caption>2013年四月</caption>
+    <tr>
+        <th scope="col">M</th>
+        <th scope="col">T</th>
+        <th scope="col">W</th>
+        <th scope="col">T</th>
+        <th scope="col">F</th>
+        <th scope="col">S</th>
+        <th scope="col">S</th>
+    </tr>
+    <tr>
+        <td class="previous">31</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td class="active">7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+        <td>26</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td>29</td>
+        <td>30</td>
+        <td class="next">1</td>
+        <td class="next">2</td>
+        <td class="next">3</td>
+        <td class="next">4</td>
+    </tr>
+</table>
 	<script type="text/javascript">
 	$(document).ready(function() {
 
