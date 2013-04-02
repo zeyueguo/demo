@@ -1,119 +1,207 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="../libs/jquery/jquery-1.9.1.min.js"></script>
-<title>Calendar</title>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="../libs/jquery/jquery-1.9.1.min.js"></script>
+    <title>Calendar</title>
     <style>
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            font-size: 90%;
-        }
-        .clmonth {
-            border-collapse: collapse;
-        }
-        .clmonth caption {
-            text-align: left;
-            font: bold 110% Georgia, "Times New Roman", Times, serif;
-            padding-bottom: 6px;
-        }
-        .clmonth th {
-            border: 1px solid #AAAAAA;
-            border-bottom: none;
-            padding: 2px 8px 2px 8px;
-            background-color: #CCCCCC;
-            color: #3F3F3F;
-            font: 80% Verdana, Geneva, Arial, Helvetica, sans-serif;
-        }
-        .clmonth td {
-            text-align: center;
-            border: 1px solid #EAEAEA;
-            font: 80% Verdana, Geneva, Arial, Helvetica, sans-serif;
-            padding: 2px 4px 2px 4px;
-            vertical-align: top;
-        }
-        .clmonth td.previous, .clmonth td.next {
-            background-color: #F6F6F6;
-            color: #C6C6C6;
-        }
-        .clmonth td.active {
-            background-color: #B1CBE1;
-            color: #2B5070;
-            border: 2px solid #4682B4;
-        }
+            /* Date Picker 日期拾取器 */
+        .jCalendar{border-collapse:collapse;font-family:Arial;width:100%;}
+        .jCalendar th{background:#fff;color:#3c3c3c;font-weight:normal;height:27px;line-height:27px;vertical-align:middle;}
+        .jCalendar td{background:#EBF6FF;color:#3c3c3c;font-size:11px;border:1px solid #cdcfd3;height:27px;line-height:27px;text-align:center;}
+        .jCalendar .other-month{background:#f7f7f7;color:#555;}
+        .jCalendar .today{background:#8ca4c8;color:#fff;}
+        .jCalendar .selected,.jCalendar .selected.dp-hover{background:#3366cc;color:#fff;}
+        .jCalendar .dp-hover,.jCalendar .activeWeekHover td{background:#8ca4c8;color:#fff;}
+        .jCalendar .selectedWeek td{background:#f66;color:#fff;}
+        .jCalendar .disabled, .jCalendar .disabled.dp-hover{background:#ECF1F4;color:#888;}
+        .jCalendar .unselectable,.jCalendar td.unselectable:hover,.jCalendar td.unselectable.dp-hover{background:#8ca4c8;color:#fff;}
+            /* For the popup *//* NOTE - you will probably want to style a.dp-choose-date - see how I did it in demo.css */
+        .dp-popup{position:relative;font-size:12px;font-family:arial, sans-serif;padding:0 2px 2px 2px;width:260px;line-height:1.2em;border:solid 1px #ddd;background:#F4F4F4;}
+        #dp-popup{position:absolute;z-index:199;}
+        .dp-popup h2{font-size:14px;text-align:center;margin:0;padding:0;height:32px;line-height:32px;border-bottom:solid 1px #cdcfd3;border-top:solid 1px #fff;color:#3c3c3c;}
+        #dp-close{font-size:11px;padding:4px 0;text-align:center;display:block;}
+        #dp-close:hover{text-decoration:underline;}
+        .dp-popup a{color:#000;text-decoration:none;width:19px;height:19px;line-height:999em;overflow:hidden;background:url(arrowicon.gif) no-repeat;margin:6px 2px 0 2px;display:inline;}
+        .dp-popup a#dp-nav-prev-year.disabled{background-position:0 -19px;}
+        .dp-popup a#dp-nav-prev-month.disabled{background-position:-19px -19px;}
+        .dp-popup a#dp-nav-prev-year{background-position:0 0;}
+        .dp-popup a#dp-nav-prev-month{background-position:-19px 0;}
+        .dp-popup a#dp-nav-next-year{background-position:-57px 0;}
+        .dp-popup a#dp-nav-next-month{background-position:-38px 0;}
+        .dp-popup div.dp-nav-prev{position:absolute;top:2px;left:12px;width:100px;}
+        .dp-popup div.dp-nav-prev a{float:left;}
+            /* Opera needs the rules to be this specific otherwise it doesn't change the cursor back to pointer after you have disabled and re-enabled a link */
+        .dp-popup div.dp-nav-prev a, .dp-popup div.dp-nav-next a{cursor:pointer;}
+        .dp-popup div.dp-nav-prev a.disabled, .dp-popup div.dp-nav-next a.disabled{cursor:default;}
+        .dp-popup div.dp-nav-next{position:absolute;top:2px;right:12px;width:100px;}
+        .dp-popup div.dp-nav-next a{float:right;}
+        .dp-popup a.disabled{cursor:default;color:#aaa;}
+        .dp-popup td{cursor:pointer;font-size:14px;}
+        .dp-popup td.disabled{cursor:default;}
+        .dp-popup td.guoqu{cursor:default;background-color: #d7e3ed;}
     </style>
 </head>
 <body>
-<table class="clmonth" summary="Calendar for June 2004">
-    <caption>2013年四月</caption>
-    <tr>
-        <th scope="col">M</th>
-        <th scope="col">T</th>
-        <th scope="col">W</th>
-        <th scope="col">T</th>
-        <th scope="col">F</th>
-        <th scope="col">S</th>
-        <th scope="col">S</th>
-    </tr>
-    <tr>
-        <td class="previous">31</td>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-    </tr>
-    <tr>
-        <td class="active">7</td>
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
-    </tr>
-    <tr>
-        <td>14</td>
-        <td>15</td>
-        <td>16</td>
-        <td>17</td>
-        <td>18</td>
-        <td>19</td>
-        <td>20</td>
-    </tr>
-    <tr>
-        <td>21</td>
-        <td>22</td>
-        <td>23</td>
-        <td>24</td>
-        <td>25</td>
-        <td>26</td>
-        <td>27</td>
-    </tr>
-    <tr>
-        <td>28</td>
-        <td>29</td>
-        <td>30</td>
-        <td class="next">1</td>
-        <td class="next">2</td>
-        <td class="next">3</td>
-        <td class="next">4</td>
-    </tr>
-</table>
-	<script type="text/javascript">
-	$(document).ready(function() {
+<div id="calendar" class="dp-popup dp-popup-inline"><h2>四月 2013</h2>
 
-		var opt = {
-			container_idName:'container'
-		}
-		
-		$('#container').calendar(opt);
+    <div class="dp-nav-prev"><a id="dp-nav-prev-year" href="#" title="上一年" class="disabled">«</a><a
+            id="dp-nav-prev-month" href="#" title="上个月" class="disabled">&lt;</a></div>
+    <div class="dp-nav-next"><a id="dp-nav-next-year" href="#" title="下一年">»</a><a id="dp-nav-next-month" href="#"
+                                                                                   title="下个月">&gt;</a></div>
+    <div class="dp-calendar">
+        <table cellspacing="0" cellpadding="0" class="jCalendar">
+            <thead>
+            <tr>
+                <th scope="col" abbr="日" title="日" class="weekend">日</th>
+                <th scope="col" abbr="一" title="一" class="weekday">一</th>
+                <th scope="col" abbr="二" title="二" class="weekday">二</th>
+                <th scope="col" abbr="三" title="三" class="weekday">三</th>
+                <th scope="col" abbr="四" title="四" class="weekday">四</th>
+                <th scope="col" abbr="五" title="五" class="weekday">五</th>
+                <th scope="col" abbr="六" title="六" class="weekend">六</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="other-month weekend  disabled">31</td>
+                <td class="current-month weekday  disabled">1</td>
+                <td class="current-month weekday today">2</td>
+                <td class="current-month weekday ">3</td>
+                <td class="current-month weekday ">4</td>
+                <td class="current-month weekday">5</td>
+                <td class="current-month weekend">6</td>
+            </tr>
+            <tr>
+                <td class="current-month weekend ">7</td>
+                <td class="current-month weekday ">8</td>
+                <td class="current-month weekday ">9</td>
+                <td class="current-month weekday ">10</td>
+                <td class="current-month weekday ">11</td>
+                <td class="current-month weekday">12</td>
+                <td class="current-month weekend">13</td>
+            </tr>
+            <tr>
+                <td class="current-month weekend ">14</td>
+                <td class="current-month weekday ">15</td>
+                <td class="current-month weekday ">16</td>
+                <td class="current-month weekday ">17</td>
+                <td class="current-month weekday ">18</td>
+                <td class="current-month weekday ">19</td>
+                <td class="current-month weekend ">20</td>
+            </tr>
+            <tr>
+                <td class="current-month weekend ">21</td>
+                <td class="current-month weekday ">22</td>
+                <td class="current-month weekday ">23</td>
+                <td class="current-month weekday ">24</td>
+                <td class="current-month weekday ">25</td>
+                <td class="current-month weekday ">26</td>
+                <td class="current-month weekend ">27</td>
+            </tr>
+            <tr>
+                <td class="current-month weekend ">28</td>
+                <td class="current-month weekday ">29</td>
+                <td class="current-month weekday ">30</td>
+                <td class="other-month weekday ">1</td>
+                <td class="other-month weekday ">2</td>
+                <td class="other-month weekday ">3</td>
+                <td class="other-month weekend ">4</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
 
-		
-	});
-	</script>
+    var date = new Date(2013,4,14);//返回当日的日期和时间
+    var year = date.getFullYear();//以四位数字返回年份。
+    var month = date.getMonth(); //返回月份 (0 ~ 11)
+    var today = date.getDate(); //返回一个月中的某一天 (1 ~ 31)
+    var week = date.getDay(); //返回一周中的某一天 (0 ~ 6)
+
+   /* var myDate = new Date();
+    myDate.setFullYear(2013,5,9);*/
+
+//    console.log(date,year,month,day,week);
+//    console.log(calcDaysForMonth(year, month+1),calcFirstDayPosition(year, month+1));
+
+
+    $("#calendar h2").text( (month+1) + "月" + today + "日 " + year );
+    //当前月份的
+    var mHaveDays = calcDaysForMonth(year, month+1);
+    var firstDay = calcFirstDayPosition(year, month);
+    //上一个月份的
+    var mHaveDays_p = calcDaysForMonth(year, month);
+//    var firstDay_p = calcFirstDayPosition(year, month);
+    //下一个月份的
+    var mHaveDays_n = calcDaysForMonth(year, month+2);
+//    var firstDay_n = calcFirstDayPosition(year, month+2);
+
+//    console.log(mHaveDays,mHaveDays_p,mHaveDays_n,firstDay,firstDay_p,firstDay_n);
+    console.log(+(new Date(year, month, 1)));
+
+    // 创建表格
+    var tpl ="";
+    for (var i=1; i<7; i++){
+        tpl+= '<tr class="">';
+
+        for (var j=1; j<8; j++){
+            tpl+= '<td></td>';
+        }
+        tpl+= '</tr>';
+    }
+    $("#calendar tbody").html(tpl);
+
+    var days_p = 0; //上个月的日子
+    var days_t = 0; //这个月的日子
+    var days_n = 0; //下个月的日子
+    // 填充表格
+    $("#calendar td").each(function(i){
+        //填充上个月的日子
+        if(i<(firstDay)){
+//            console.log("上个月的日子",i,mHaveDays);
+            days_p++;
+//            console.log(mHaveDays_p-firstDay+days_p);
+            $(this).addClass("disabled").html(mHaveDays_p-firstDay+days_p);
+        //填充这个月的日子
+        } else if (i>=(firstDay) && (days_t<mHaveDays)){
+            days_t++;
+            $(this).html(days_t);
+            //标注今天
+            if (days_t==today){
+                $(this).addClass("today");
+            }
+            //标注这个月已经过去了的日子
+            if(days_t<today) {
+                $(this).addClass("guoqu");
+            }
+            //填充下个月的日子
+        } else {
+//            console.log("下个月的日子"+i);
+            days_n++;
+            $(this).addClass("disabled").html(days_n);
+        }
+    });
+
+
+    /**
+     * 计算一个月有多少天
+     */
+    function calcDaysForMonth(year, month) {
+        var days = (new Date(+(new Date(year, month, 1)) - 86400000)).getDate();
+        //一天的秒数是24*60*60*1000=86400000
+        return days;
+    }
+
+    /**
+     * 计算这个月的第一天显示的的位置，可以根据它的星期来计算
+     */
+    function calcFirstDayPosition(year, month) {
+        return new Date(year, month, 1).getDay();
+    }
+
+
+</script>
 </body>
 </html>
