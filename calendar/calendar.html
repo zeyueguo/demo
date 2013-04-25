@@ -57,7 +57,7 @@
     <a href="http://www.zol.com" title="2013-5-11">音乐会04</a>
 </div>
 
-<div id="calendar" class="dp-popup dp-popup-inline"><h2>四月 2013</h2>
+<div id="calendar" class="dp-popup dp-popup-inline"><h2>未知当前日期</h2>
 
     <!--<div class="dp-nav-prev"><a id="dp-nav-prev-year" href="#" title="上一年" class="disabled">«</a><a
             id="dp-nav-prev-month" href="#" title="上个月" class="disabled">&lt;</a></div>
@@ -139,7 +139,7 @@
 </div>
 <script type="text/javascript">
 
-    ;(function(){
+    (function(){
         var date = new Date();//返回当日的日期和时间
         var year = date.getFullYear();//以四位数字返回年份。
         var month = date.getMonth(); //返回月份 (0 ~ 11)
@@ -153,27 +153,55 @@
                 link_hd = [];//当月活动日的链接
 
 
-        $("#shuJu>a").each(function(i){
+        /*$("#shuJu>a").each(function(i){
             timeA.push($(this).attr("title").split("-"));
             if( timeA[i][0] == year && timeA[i][1] == (month+1) ){
                 day_hd.push(timeA[i][2]);
                 text_hd.push($(this).text());
                 link_hd.push($(this).attr("href"));
             }
-        });
+        });*/
+
+        var shuJu = document.getElementById("shuJu").getElementsByTagName("a");
+        for (var i=0; i<shuJu.length; i++){
+
+            timeA.push(shuJu[i].getAttribute("title").split("-"));
+            if( timeA[i][0] == year && timeA[i][1] == (month+1) ){
+                day_hd.push(timeA[i][2]);
+                // 获取文本数据
+                var child_shuJu = shuJu[i].childNodes;
+                var text_shuJu = "";
+                for (var k=0; k<child_shuJu.length; k++){
+                    if(child_shuJu[k].nodeType ==3){
+                        text_shuJu = child_shuJu[k];
+                    }
+                }
+                text_hd.push(text_shuJu);
+
+                link_hd.push(shuJu[i].getAttribute("href"));
+            }
+        }
 
 
-        $("#calendar h2").text( (month+1) + "月" + today + "日 " + year  + "年" );
+//        $("#calendar h2").text( (month+1) + "月" + today + "日 " + year  + "年" );
 
-        //当前月份的
+       var child_calender = document.getElementById("calendar").getElementsByTagName("h2")[0].childNodes;
+        for(var i=0; i<=child_calender.length; i++){
+            if(child_calender[i]){
+                if (child_calender[i].nodeType==3){
+                    child_calender[i].nodeValue = (month+1) + "月" + today + "日 " + year  + "年";
+                }
+            }
+        }
+
+
+       //当前月份的
         var mHaveDays = calcDaysForMonth(year, month+1);
         var firstDay = calcFirstDayPosition(year, month);
         //上一个月份的
         var mHaveDays_p = calcDaysForMonth(year, month);
-//    var firstDay_p = calcFirstDayPosition(year, month);
         //下一个月份的
         var mHaveDays_n = calcDaysForMonth(year, month+2);
-//    var firstDay_n = calcFirstDayPosition(year, month+2);
 
         // 创建表格
         var tpl ="";
@@ -239,18 +267,14 @@
         });
 
 
-        /**
-         * 计算一个月有多少天
-         */
+//        计算一个月有多少天
         function calcDaysForMonth(year, month) {
             var days = (new Date(+(new Date(year, month, 1)) - 86400000)).getDate();
             //一天的秒数是24*60*60*1000=86400000
             return days;
         }
 
-        /**
-         * 计算这个月的第一天显示的的位置，可以根据它的星期来计算
-         */
+//        计算这个月的第一天显示的的位置，可以根据它的星期来计算
         function calcFirstDayPosition(year, month) {
             return new Date(year, month, 1).getDay();
         }
