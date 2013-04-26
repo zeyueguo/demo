@@ -42,7 +42,9 @@
         .jCalendar .guoqu {background-color: #d7e3ed;}
         .jCalendar .hd {cursor:pointer;background-color: #c43c35; color:#fff; font-weight: bold; border: 1px solid #ffffff; }
 
-        #tqc { display: none; padding: 14px; position: absolute; bottom: 0; left: 0; width: 264px; height: 196px; background-color: #f9f9f9; line-height: 22px; }
+        #tqc { display: none;  position: absolute; bottom: 0; left: 0; width: 264px;
+            height: 170px; background-color: #f9f9f9; line-height: 22px; }
+        #tqc tbody { padding: 14px; display: block; }
         #shuJu { display: none; }
         #tqc a { color: #003bb3; margin-bottom: 10px; display: block; text-decoration: none; }
         #tqc span { color: #000; cursor: pointer; }
@@ -51,7 +53,7 @@
 <body>
 
 <div id="shuJu">
-    <a href="http://www.qq.com" title="2013-4-13">音乐会01</a>
+    <a href="http://www.qq.com"  title="2013-4-13">音乐会01</a>
     <a href="http://www.163.com" title="2013-4-7">音乐会02</a>
     <a href="http://www.263.com" title="2013-4-21">音乐会03</a>
     <a href="http://www.zol.com" title="2013-5-11">音乐会04</a>
@@ -77,51 +79,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="other-month weekend  disabled">31</td>
-                <td class="current-month weekday  disabled">1</td>
-                <td class="current-month weekday today">2</td>
-                <td class="current-month weekday ">3</td>
-                <td class="current-month weekday ">4</td>
-                <td class="current-month weekday">5</td>
-                <td class="current-month weekend">6</td>
-            </tr>
-            <tr>
-                <td class="current-month weekend ">7</td>
-                <td class="current-month weekday ">8</td>
-                <td class="current-month weekday ">9</td>
-                <td class="current-month weekday ">10</td>
-                <td class="current-month weekday ">11</td>
-                <td class="current-month weekday">12</td>
-                <td class="current-month weekend">13</td>
-            </tr>
-            <tr>
-                <td class="current-month weekend ">14</td>
-                <td class="current-month weekday ">15</td>
-                <td class="current-month weekday ">16</td>
-                <td class="current-month weekday ">17</td>
-                <td class="current-month weekday ">18</td>
-                <td class="current-month weekday ">19</td>
-                <td class="current-month weekend ">20</td>
-            </tr>
-            <tr>
-                <td class="current-month weekend ">21</td>
-                <td class="current-month weekday ">22</td>
-                <td class="current-month weekday ">23</td>
-                <td class="current-month weekday ">24</td>
-                <td class="current-month weekday ">25</td>
-                <td class="current-month weekday ">26</td>
-                <td class="current-month weekend ">27</td>
-            </tr>
-            <tr>
-                <td class="current-month weekend ">28</td>
-                <td class="current-month weekday ">29</td>
-                <td class="current-month weekday ">30</td>
-                <td class="other-month weekday ">1</td>
-                <td class="other-month weekday ">2</td>
-                <td class="other-month weekday ">3</td>
-                <td class="other-month weekend ">4</td>
-            </tr>
+
             </tbody>
         </table>
 
@@ -185,14 +143,17 @@
 
 //        $("#calendar h2").text( (month+1) + "月" + today + "日 " + year  + "年" );
 
-       var child_calender = document.getElementById("calendar").getElementsByTagName("h2")[0].childNodes;
+       /*var child_calender = document.getElementById("calendar").getElementsByTagName("h2")[0].childNodes;
         for(var i=0; i<=child_calender.length; i++){
             if(child_calender[i]){
                 if (child_calender[i].nodeType==3){
                     child_calender[i].nodeValue = (month+1) + "月" + today + "日 " + year  + "年";
                 }
             }
-        }
+        }*/
+
+        var h2_calender = document.getElementById("calendar").getElementsByTagName("h2")[0];
+        h2_calender.innerHTML = (month+1) + "月" + today + "日 " + year  + "年";
 
 
        //当前月份的
@@ -213,58 +174,119 @@
             }
             tpl+= '</tr>';
         }
-        $("#jCalendar tbody").html(tpl);
+//        $("#jCalendar tbody").html(tpl);
+
+         var tbody_jCalender = document.getElementById("jCalendar").getElementsByTagName("tbody")[0];
+        tbody_jCalender.innerHTML = tpl;
+
+        /*  for (var i=0; i<tbody_jCalender.length; i++){
+              console.log(tbody_jCalender[i]);
+
+              if(tbody_jCalender[i]==1){
+                  tbody_jCalender[i].innerHTML(tpl);
+              }
+          }*/
+
+
 
         var days_p = 0; //上个月的日子
         var days_t = 0; //这个月的日子
         var days_n = 0; //下个月的日子
 
+        var link_b = "";
+        var text_b = "";
+        var day_b = "";
+
+
+        var tqc = document.getElementById("tqc"); //弹出窗
+
         // 填充表格
-        $("#jCalendar td").each(function(i){
+
+        var td_jCalendar = document.getElementById("jCalendar").getElementsByTagName("td");
+
+        for (var i=0; i<td_jCalendar.length; i++){
 
             //填充上个月的日子
             if(i<(firstDay)){
                 days_p++;
-                $(this).addClass("disabled").html(mHaveDays_p-firstDay+days_p);
+                td_jCalendar[i].className = td_jCalendar[i].className + " " + "disabled";
+                td_jCalendar[i].innerHTML = mHaveDays_p-firstDay+days_p;
 
-                //填充这个月的日子
+//                        .addClass("disabled").html(mHaveDays_p-firstDay+days_p);
+
+            //填充这个月的日子
             } else if (i>=(firstDay) && (days_t<mHaveDays)){
                 days_t++;
-                $(this).html(days_t);
+//                $(this).html(days_t);
+                td_jCalendar[i].innerHTML = days_t;
                 /*//标注今天
                  if (days_t==today){
                  $(this).addClass("today");
                  }*/
                 //标注这个月已经过去了的日子
                 if(days_t<today) {
-                    $(this).addClass("guoqu");
-                }
-                //填充有活动的日子
-                for (var k=0; k<day_hd.length; k++){
-                    if(day_hd[k] == days_t){
-                        $(this).addClass("hd");
-//                    console.log(day_hd[k],link_hd[k],text_hd[k]);
-                        var link_b = link_hd[k];
-                        var text_b = text_hd[k];
-                        var day_b = day_hd[k];
-                        $(this).click([link_b,text_b,day_b],function(){
-                            $("#calendar h2").text((month+1) + "月" + day_b + "日 " + year  + "年");
-                            $("#tqc").show(100).find("a").attr("href",link_b).text(text_b);
-                        });
-                        $("#tqc span").click(function(){
-                            $("#tqc").hide(100);
-                            $("#calendar h2").text((month+1) + "月" + today + "日 " + year  + "年");
-                        })
-                    }
+//                    $(this).addClass("guoqu");
+                    td_jCalendar[i].className = td_jCalendar[i].className + " " + "guoqu";
                 }
 
+
+                //填充有活动的日子
+
+
+                for (var k=0; k<day_hd.length; k++){
+                    if(day_hd[k] == days_t){
+//                        $(this).addClass("hd");
+                        td_jCalendar[i].className = td_jCalendar[i].className + " " + "hd";
+//                      console.log(day_hd[k],link_hd[k],text_hd[k]);
+
+                        link_b = link_hd[k];
+                        text_b = text_hd[k].nodeValue;
+                        day_b = day_hd[k];
+//                        day_b.push(day_hd[k]);
+                        td_jCalendar[i].onclick = function(){
+                            h2_calender.innerHTML = (month+1) + "月" + this.childNodes[0] + "日 " + year  + "年";
+                            tqc.style.display = "block";
+                            tqc.getElementsByTagName("a")[0].setAttribute("href",link_b);
+                            tqc.getElementsByTagName("a")[0].innerHTML = text_b;
+                        }
+                       /* function hd_click(day_b,text_b){
+                            console.log(text_b);
+                            h2_calender.innerHTML = (month+1) + "月" + day_b + "日 " + year  + "年";
+                            tqc.style.display = "block";
+                            tqc.getElementsByTagName("a")[0].setAttribute("href",link_b);
+                            tqc.getElementsByTagName("a")[0].innerHTML = text_b;
+                        }*/
+
+
+
+                    }
+                }
+                /*  $(this).click([link_b,text_b,day_b],function(){
+                 $("#calendar h2").text((month+1) + "月" + day_b + "日 " + year  + "年");
+                 $("#tqc").show(100).find("a").attr("href",link_b).text(text_b);
+                 });*/
+
+
+
+                /* $("#tqc span").click(function(){
+                 $("#tqc").hide(100);
+                 $("#calendar h2").text((month+1) + "月" + today + "日 " + year  + "年");
+                 })*/
                 //填充下个月的日子
             } else {
                 days_n++;
-                $(this).addClass("disabled").html(days_n);
-            }
+//                $(this).addClass("disabled").html(days_n);
 
-        });
+                td_jCalendar[i].className = td_jCalendar[i].className + " " + "disabled";
+                td_jCalendar[i].innerHTML = days_n;
+            }
+        }
+
+
+       /* hd_
+
+        }*/
+
 
 
 //        计算一个月有多少天
