@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>看看V5滚动图片</title>
+    <style type="text/css">
+            /*--头条--*/
+        html{overflow-y:scroll;}
+        body{margin:0; padding:40px 0 0 0; font-size:12px; font-family:"微软雅黑"; background:#fff; text-align:center;}
+        div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}
+        table,td,tr,th{font-size:12px;}
+        ol,ul {list-style:none;}
+        li{list-style-type:none;}
+        img{vertical-align:top; border:0;}
+        h1,h2,h3,h4,h5,h6{font-size:inherit; font-weight:normal;}
+        address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+        a:link{color:#204b78; text-decoration:none;}
+        a:visited{color:#204b78;text-decoration:none;}
+        a:hover{text-decoration:underline; color:#c70025;}
+            /* 清理浮动 */
+        .fn-clearfix:after{ visibility:hidden; display:block; font-size:0; content:" "; clear:both; height:0;}
+        .fn-clearfix{ zoom:1; /* for IE6 IE7 */}
+        .fn-clear{ clear: both;}
+            /* 设置内联, 减少浮动带来的bug */
+        .fn-left,.fn-right{ display:inline;}
+        .fn-left{ float:left;}
+        .fn-right{ float:right;}
+
+        .disn { display: block; text-indent: -99999em; }
+        #headline { overflow: hidden; position: relative; width: 660px; height: 318px; background: #FFF url(http://skin.kankanews.com/v5/images/index.png) 0 -46px no-repeat; }
+        #headline a { text-decoration: none; color: #252525; }
+        #showBox_headline { width: 1980px; position: relative; height: 317px; left: -660px;}
+        #showBox_headline .ld { float: left; display: inline; margin: 13px 0 0 18px; width: 146px; height: 232px; border-bottom: 1px dotted #cccccc; }
+        #showBox_headline .item { position: absolute; top: 0px; left: 660px; z-index: 0; display: none; width:660px;}
+        #showBox_headline h2 { height:32px; color:#c20e30; font-size:18px; line-height:32px; font-weight:700; }
+        #showBox_headline h3 a { display: block; overflow: hidden; height: 43px; border-bottom: 1px dotted #cccccc; line-height: 52px; font-size: 16px; font-weight: bold; color: #252525; }
+        #showBox_headline .txt { margin-top: 4px;  display: block; height: 146px; overflow: hidden; line-height: 24px; font-size: 12px; color: #666;  }
+        #showBox_headline .pic { float: right; display: inline; margin-top: 44px; width: 485px; }
+        .share_headline { margin: 15px 0 0 39px; width: 118px; height: 60px; }
+        .share_headline ul { display: none; padding:0 4px; height: 26px; border: 1px solid #cccccc; width:89px; background: #FFF url(http://skin.kankanews.com/v5/images/index.png) -427px -4px no-repeat; }
+        .share_headline p { text-indent: 24px; width: 62px; height: 15px; margin: 1px 0 8px 33px; color: #234b7c;  overflow: hidden; background: #FFF url(http://skin.kankanews.com/v5/images/index.png) -639px -6px no-repeat; }
+        .share_headline li { margin: 5px 0 0 5px; float: left; display: inline; width: 16px; height: 16px; }
+        .share_headline li a:link,.share_headline li a:visited{ width:16px; height:0px; padding-top:16px; overflow:hidden; display:block;}
+
+        #num_headline { height: 16px; position: absolute; right: 10px; top: 15px; z-index: 20;}
+        #num_headline li { float: left; width: 16px; height: 16px; text-indent: -99999em; background: url(http://skin.kankanews.com/v5/images/tm.gif) -116px -34px no-repeat; cursor: pointer; }
+        #num_headline .cur_num { background: url(http://skin.kankanews.com/v5/images/tm.gif) -116px -12px no-repeat; cursor: pointer; }
+
+        #prev_headline,#next_headline { display: none; width: 46px; height: 48px; position: absolute; cursor: pointer; z-index: 20; }
+        #prev_headline { left: 6px; bottom: 10px; background: url(http://skin.kankanews.com/v5/images/tm.gif) -8px -8px no-repeat; }
+        #next_headline { right: 6px; bottom: 10px; background: url(http://skin.kankanews.com/v5/images/tm.gif) -56px -8px no-repeat; }
+    </style>
+
+</head>
+<body>
+
+<div class="headline" id="headline">
+    <ul id="showBox_headline" style="left: -660px;">
+        <li class="item">
+            <div class="ld">
+                <h2>今日头条</h2>
+                <h3><a target="_blank" href="http://domestic.kankanews.com/c/2013-04-27/0012831958.shtml">
+                    逝者安息 生者坚强					</a></h3>
+                <a class="txt" target="_blank" href="http://domestic.kankanews.com/c/2013-04-27/0012831958.shtml">
+                    27日上午8点02分，四川各地汽车、船舶鸣笛，防空警报鸣响，全省人民默哀3分钟，今天停止公共娱乐活动。				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=逝者安息 生者坚强&amp;url=http://domestic.kankanews.com/c/2013-04-27/0012831958.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://domestic.kankanews.com/c/2013-04-27/0012831958.shtml&amp;title=逝者安息 生者坚强">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=逝者安息 生者坚强&amp;rurl=http://domestic.kankanews.com/c/2013-04-27/0012831958.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://domestic.kankanews.com/c/2013-04-27/0012831958.shtml"><img src="http://static.statickksmg.com/image/2013/04/27/8f06bf839c5f048b4e8dc868e5730c62.jpg" alt="逝者安息 生者坚强" width="480" height="270"></a>
+        </li>
+        <li class="item">
+            <div class="ld">
+                <h2>热点聚焦</h2>
+                <h3><a target="_blank" href="http://domestic.kankanews.com/c/2013-04-26/0012828486.shtml">
+                    兔首鼠首 国宝回家					</a></h3>
+                <a class="txt" target="_blank" href="http://domestic.kankanews.com/c/2013-04-26/0012828486.shtml">
+                    今天(4月26日)上午11时，国家文物局副局长宋新潮、博物馆与社会文物司司长段勇在北京柏悦酒店会晤了法国PPR集团董事长兼首席执行官弗朗索瓦－亨利·皮诺先生。皮诺先生代表皮诺家族表示，将向中国政府捐赠流失海外的圆明园十二大水法中的青铜鼠首和兔首。				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=兔首鼠首 国宝回家&amp;url=http://domestic.kankanews.com/c/2013-04-26/0012828486.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://domestic.kankanews.com/c/2013-04-26/0012828486.shtml&amp;title=兔首鼠首 国宝回家">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=兔首鼠首 国宝回家&amp;rurl=http://domestic.kankanews.com/c/2013-04-26/0012828486.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://domestic.kankanews.com/c/2013-04-26/0012828486.shtml"><img src="http://static.statickksmg.com/image/2013/04/26/1e78e95312e4cc1175905e1f13daeda3.jpg" alt="兔首鼠首 国宝回家" width="480" height="270"></a>
+        </li>
+        <li class="item">
+            <div class="ld">
+                <h2>热点聚焦</h2>
+                <h3><a target="_blank" href="http://domestic.kankanews.com/focus/2013-04-26/2825947.shtml">
+                    中法“第一夫人”们					</a></h3>
+                <a class="txt" target="_blank" href="http://domestic.kankanews.com/focus/2013-04-26/2825947.shtml">
+                    来关注法国总统奥朗德访华消息，奥朗德及女友瓦莱丽·特里埃维勒访华期间，第一夫人彭丽媛着一身“黑白配”优雅裙装，与奥朗德女友瓦莱丽亲密牵手互动，展现优雅气质。				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=中法“第一夫人”们&amp;url=http://domestic.kankanews.com/focus/2013-04-26/2825947.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://domestic.kankanews.com/focus/2013-04-26/2825947.shtml&amp;title=中法“第一夫人”们">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=中法“第一夫人”们&amp;rurl=http://domestic.kankanews.com/focus/2013-04-26/2825947.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://domestic.kankanews.com/focus/2013-04-26/2825947.shtml"><img src="http://static.statickksmg.com/image/2013/04/26/27440c08cd992d58499ee0b1dd56b453.jpg" alt="中法“第一夫人”们" width="480" height="270"></a>
+        </li>
+        <li class="item">
+            <div class="ld">
+                <h2>社会热点</h2>
+                <h3><a target="_blank" href="http://finance.kankanews.com/f/2013-04-27/0012831541.shtml">
+                    黄金身！白菜价？					</a></h3>
+                <a class="txt" target="_blank" href="http://finance.kankanews.com/f/2013-04-27/0012831541.shtml">
+                    连日来，由于国际金价“跳水”、上涨又下跌，引起国内历史上未见的黄金抢购潮。				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=黄金身！白菜价？&amp;url=http://finance.kankanews.com/f/2013-04-27/0012831541.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://finance.kankanews.com/f/2013-04-27/0012831541.shtml&amp;title=黄金身！白菜价？">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=黄金身！白菜价？&amp;rurl=http://finance.kankanews.com/f/2013-04-27/0012831541.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://finance.kankanews.com/f/2013-04-27/0012831541.shtml"><img src="http://static.statickksmg.com/image/2013/04/27/ef598b13ac57ade7f19b7eceacd42177.jpg" alt="黄金身！白菜价？" width="480" height="270"></a>
+        </li>
+        <li class="item">
+            <div class="ld">
+                <h2>社会热点</h2>
+                <h3><a target="_blank" href="http://society.kankanews.com/s/2013-04-27/0012831582.shtml">
+                    大背头弥勒“退场”					</a></h3>
+                <a class="txt" target="_blank" href="http://society.kankanews.com/s/2013-04-27/0012831582.shtml">
+                    河南洛阳偃师一游乐园新建一尊弥勒佛像，因发型着装时尚引起热议，4月26日，工作人员在佛像上盖上帆布，“大背头”弥勒佛暂时“蒙羞退场”。				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=大背头弥勒“退场”&amp;url=http://society.kankanews.com/s/2013-04-27/0012831582.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://society.kankanews.com/s/2013-04-27/0012831582.shtml&amp;title=大背头弥勒“退场”">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=大背头弥勒“退场”&amp;rurl=http://society.kankanews.com/s/2013-04-27/0012831582.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://society.kankanews.com/s/2013-04-27/0012831582.shtml"><img src="http://static.statickksmg.com/image/2013/04/27/8d7bdb28a1cc7d84c6d5832ad10de8e8.jpg" alt="大背头弥勒“退场”" width="480" height="270"></a>
+        </li>
+        <li class="item">
+            <div class="ld">
+                <h2>深度追踪</h2>
+                <h3><a target="_blank" href="http://society.kankanews.com/s/2013-04-27/0012831908.shtml">
+                    查！不查！查？！					</a></h3>
+                <a class="txt" target="_blank" href="http://society.kankanews.com/s/2013-04-27/0012831908.shtml">
+                    有报道称，红会社监委发言人王永表示，社监委将重新调查郭美美事件。而昨天，红会秘书长王汝鹏则称，没人说过要重查郭美美，只是王永等委员个人提议。				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=查！不查！查？！&amp;url=http://society.kankanews.com/s/2013-04-27/0012831908.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://society.kankanews.com/s/2013-04-27/0012831908.shtml&amp;title=查！不查！查？！">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=查！不查！查？！&amp;rurl=http://society.kankanews.com/s/2013-04-27/0012831908.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://society.kankanews.com/s/2013-04-27/0012831908.shtml"><img src="http://static.statickksmg.com/image/2013/04/27/ee9b699fdc72387bb463a41a210a5a3c.jpg" alt="查！不查！查？！" width="480" height="270"></a>
+        </li>
+        <li class="item">
+            <div class="ld">
+                <h2>深度追踪</h2>
+                <h3><a target="_blank" href="http://society.kankanews.com/s/2013-04-26/0012827500.shtml">
+                    扑克命案亮底牌					</a></h3>
+                <a class="txt" target="_blank" href="http://society.kankanews.com/s/2013-04-26/0012827500.shtml">
+                    3月15日，杭州发生一起“扑克牌”杀人案，现杀人凶手已落网。当时余杭警方在尸体旁发现三张扑克牌：黑桃5、方块J、黑桃K。后经法医检查，死者为女性，年龄25岁左右，身上有严重人为损伤并致其死亡，此案即被确认为凶杀案。目前嫌犯正在审讯中。视频为警方抓捕嫌犯的现场。				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=扑克命案亮底牌&amp;url=http://society.kankanews.com/s/2013-04-26/0012827500.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://society.kankanews.com/s/2013-04-26/0012827500.shtml&amp;title=扑克命案亮底牌">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=扑克命案亮底牌&amp;rurl=http://society.kankanews.com/s/2013-04-26/0012827500.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://society.kankanews.com/s/2013-04-26/0012827500.shtml"><img src="http://static.statickksmg.com/image/2013/04/26/cb7432ffa33c4208d2778ffd9fe60cdb.jpg" alt="扑克命案亮底牌" width="480" height="270"></a>
+        </li>
+        <li class="item">
+            <div class="ld">
+                <h2>热点话题</h2>
+                <h3><a target="_blank" href="http://society.kankanews.com/s/2013-04-26/0012827622.shtml">
+                    韩国小姐全撞脸					</a></h3>
+                <a class="txt" target="_blank" href="http://society.kankanews.com/s/2013-04-26/0012827622.shtml">
+                    2013年度“韩国小姐”选拔大赛于4月24日在韩国水源市拉开帷幕。各位韩国佳丽的靓照一经曝光，便引来韩国网民们一顿唏嘘：“除了笑容不一样，容貌简直一模一样”；“长得一模一样根本分辨不出来，‘韩国小姐’怎么选？”				</a>
+                <div class="share_headline">
+                    <p>分享到</p>
+                    <ul>
+                        <li title="新浪微博"><a target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=韩国小姐全撞脸&amp;url=http://society.kankanews.com/s/2013-04-26/0012827622.shtml">新浪微博</a></li>
+                        <li title="腾讯微博"><a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://society.kankanews.com/s/2013-04-26/0012827622.shtml&amp;title=韩国小姐全撞脸">腾讯微博</a></li>
+                        <li title="开心网"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=韩国小姐全撞脸&amp;rurl=http://society.kankanews.com/s/2013-04-26/0012827622.shtml">开心网</a></li>
+                        <li title="百度贴吧"><a onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="#">百度贴吧</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a target="_blank" class="pic" href="http://society.kankanews.com/s/2013-04-26/0012827622.shtml"><img src="http://static.statickksmg.com/image/2013/04/26/c18038b5f0a0ec653593528c7c798aaa.jpg" alt="韩国小姐全撞脸" width="480" height="270"></a>
+        </li>
+    </ul>
+    <ol id="num_headline">
+        <li class="">1</li><li class="">2</li><li class="">3</li><li class="">4</li><li class="">5</li><li class="">6</li><li class="cur_num">7</li><li class="">8</li></ol>
+    <span id="prev_headline" style="display: none;"></span> <span id="next_headline" style="display: none;"></span>
+</div>
+
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="scrollPic.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#headline").scrollPic({});
+    });
+</script>
+
+</body>
+</html>
