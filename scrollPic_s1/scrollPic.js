@@ -9,14 +9,22 @@
                 var $showBox_item = $this.find(opts.showBox_item);
                 var $itemBox = $this.find(opts.itemBox);
 
-                var $btn_prev = $this.find(opts.btn_prev);
-                var $btn_next = $this.find(opts.btn_next);
                 var i_item = $showBox_item.length;
                 var now = 0;
                 var loaded = false;
                 var $itemBox_item = null;
 
-                $btn_prev.bind("click",function(){
+                var showBox = document.getElementById("showBox_headline");
+                var showBox_item = showBox.childNodes;
+
+
+                var itemBox = document.getElementById("num_headline");
+                var itemBox_item = itemBox.getElementsByTagName("li");
+                var btn_prev = document.getElementById("prev_headline");
+                var btn_next = document.getElementById("next_headline");
+
+
+                function prevEvt(){
                     if(!$showBox.is(":animated")) {
                         autoStop();
                         if(now==0){
@@ -25,9 +33,9 @@
                             mm(now-1,"prev");
                         }
                     }
-                });
+                }
 
-                $btn_next.bind("click",function(){
+                function nextEvt(){
                     if(!$showBox.is(":animated")) {
                         autoStop();
                         if(now==(i_item-1)){
@@ -36,7 +44,11 @@
                             mm(now+1,"next");
                         }
                     }
-                });
+                }
+
+                btn_prev.addEventListener ? btn_prev.addEventListener("click",prevEvt,false) : btn_prev.attachEvent("onclick",prevEvt);
+                btn_next.addEventListener ? btn_next.addEventListener("click",nextEvt,false) : btn_next.attachEvent("onclick",nextEvt);
+
 
                 //懒加载
                /* function loding(k){
@@ -77,39 +89,34 @@
                                     $showBox_item.eq(k+1).css({"left":660+"px","z-index": 0,"display":"none"});
                                     $showBox_item.eq(k).css({"left":660,"z-index": 5,"display": "block"});
                                 }
-
-
                             });
-
-
                         }
-
-
                     }
-//
-                    $itemBox_item.eq(k).addClass(opts.currClass).siblings().removeClass(opts.currClass);
+
+                    for(var i=0; i<itemBox_item.length; i++){
+                        itemBox_item[i].className = itemBox_item[i].className.replace(" cur_num","");
+                    }
+                    itemBox_item[k].className = itemBox_item[k].className + " " + "cur_num";
                     now = k;
                 }
 
-                $showBox_item.each(function(i){
 
-                    //写入数字点击项目
-                    $itemBox.append('<li>' + (i + 1) + '</li>');
-                    $itemBox_item = $itemBox.find(opts.itemBox_item);
 
-                    //初始化写入
-                  /*  if (i==0){
-
+                var tpl_ib = "";
+                for(var i=0; i<showBox_item.length; i++){
+                    if(showBox_item[i].nodeName === "LI"){
+                        tpl_ib += '<li>' + i + '</li>';
+                        itemBox.innerHTML = tpl_ib;
                     }
-*/
+                }
 
-                });
+                itemBox_item[0].className = itemBox_item[0].className + " " + "cur_num";
+                $showBox_item[0].style.display = "block";
 
-                $itemBox_item.eq(0).addClass(opts.currClass);
-                $showBox_item.eq(0).css("display","block");
+
 
                 //点击数字项目
-                $itemBox_item.click(function(){
+               /* $itemBox_item.click(function(){
                     autoStop();
                     if(!$showBox.is(":animated")) {
                         var i_index = $itemBox_item.index(this); //索引出当前点击在列表中的位置值
@@ -123,7 +130,7 @@
                         }
                         mm(now,"next");
                     }
-                });
+                });*/
 
                 //自动播放
                 function autoPlay () {
@@ -146,13 +153,13 @@
 
                 $this.eq(0).bind({
                     mouseenter:function(){
-                        $btn_prev.show();
-                        $btn_next.show();
+                        $(btn_prev).show();
+                        $(btn_next).show();
                         autoStop();
                     },
                     mouseleave:function(){
-                        $btn_prev.hide();
-                        $btn_next.hide();
+                        $(btn_prev).hide();
+                        $(btn_next).hide();
                         autoPlay();
                     }
                 });
