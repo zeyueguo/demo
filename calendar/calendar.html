@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="../libs/jquery/jquery-1.9.1.min.js"></script>
+    <!--<script src="../libs/jquery/jquery-1.9.1.min.js"></script>-->
     <title>Calendar</title>
     <style>
             /* Date Picker 日期拾取器 */
@@ -131,7 +131,8 @@
                 var text_shuJu = "";
                 for (var k=0; k<child_shuJu.length; k++){
                     if(child_shuJu[k].nodeType ==3){
-                        text_shuJu = child_shuJu[k];
+
+                        text_shuJu = child_shuJu[k].nodeValue;
                     }
                 }
                 text_hd.push(text_shuJu);
@@ -235,27 +236,18 @@
 
                 for (var k=0; k<day_hd.length; k++){
                     if(day_hd[k] == days_t){
-//                        $(this).addClass("hd");
                         td_jCalendar[i].className = td_jCalendar[i].className + " " + "hd";
-//                      console.log(day_hd[k],link_hd[k],text_hd[k]);
 
-                        link_b = link_hd[k];
-                        text_b = text_hd[k].nodeValue;
-                        day_b = day_hd[k];
-//                        day_b.push(day_hd[k]);
+                        // 非常重要
+                        td_jCalendar[i].index = k;
+
                         td_jCalendar[i].onclick = function(){
-                            h2_calender.innerHTML = (month+1) + "月" + this.childNodes[0] + "日 " + year  + "年";
+                            h2_calender.innerHTML = (month+1) + "月" + this.childNodes[0].nodeValue + "日 " + year  + "年";
                             tqc.style.display = "block";
-                            tqc.getElementsByTagName("a")[0].setAttribute("href",link_b);
-                            tqc.getElementsByTagName("a")[0].innerHTML = text_b;
+                            tqc.getElementsByTagName("a")[0].setAttribute("href",link_hd[this.index]);
+                            tqc.getElementsByTagName("a")[0].innerHTML = text_hd[this.index];
                         }
-                       /* function hd_click(day_b,text_b){
-                            console.log(text_b);
-                            h2_calender.innerHTML = (month+1) + "月" + day_b + "日 " + year  + "年";
-                            tqc.style.display = "block";
-                            tqc.getElementsByTagName("a")[0].setAttribute("href",link_b);
-                            tqc.getElementsByTagName("a")[0].innerHTML = text_b;
-                        }*/
+
 
 
 
@@ -268,10 +260,7 @@
 
 
 
-                /* $("#tqc span").click(function(){
-                 $("#tqc").hide(100);
-                 $("#calendar h2").text((month+1) + "月" + today + "日 " + year  + "年");
-                 })*/
+
                 //填充下个月的日子
             } else {
                 days_n++;
@@ -282,10 +271,19 @@
             }
         }
 
+        var span_tqc = tqc.getElementsByTagName("span");
+        for (var i=0; i<span_tqc.length; i++){
+            span_tqc[i].onclick = function(){
+                tqc.style.display = "none";
+                h2_calender.innerHTML = (month+1) + "月" + today + "日 " + year  + "年";
+            }
+        }
 
-       /* hd_
 
-        }*/
+     /*    $("#tqc span").click(function(){
+             $("#tqc").hide(100);
+             $("#calendar h2").text((month+1) + "月" + today + "日 " + year  + "年");
+         })*/
 
 
 
@@ -300,6 +298,7 @@
         function calcFirstDayPosition(year, month) {
             return new Date(year, month, 1).getDay();
         }
+
     })()
 
 
