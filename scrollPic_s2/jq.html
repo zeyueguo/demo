@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title></title>
+    <style type="text/css">
+        #fader{position:relative;overflow:hidden;height:300px;width:500px}
+        #showBox a{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            display: block;
+            overflow:hidden;
+            height:300px;
+            opacity: 0;
+            filter:alpha(opacity=0)
+        }
+        #showBox .showBox_cur {
+            z-index: 2;
+        }
+        #subBg {color: rgb(255, 255, 255); font-size: 12px;
+            text-indent: 20px; margin: 0px; position: absolute; left: 0px; bottom: 0px; overflow: hidden; width: 100%; background-color: rgb(0, 0, 0); opacity: 0.7; line-height: 36px; height: 0px; z-index: 17;}
+        #fader-nav {position: absolute; right: 0px; bottom: 0px; padding: 8px 0px; z-index: 68;}
+        #fader-nav span {display:inline-block;margin-right:8px;color:#fff;padding:2px 6px;background:#333;border:1px solid #fff;font-family:Tahoma;font-weight:bold;font-size:12px;cursor:pointer;}
+        #fader-nav .fader-cur-nav{display:inline-block;margin-right:8px;color:#fff;padding:2px 6px;background:#ff7a00;border:1px solid #fff;font-family:Tahoma;font-weight:bold;font-size:12px;cursor:pointer;}
+    </style>
+    <script type="text/javascript" src="../libs/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            $(function(){
+
+                var timerID; //重复执行变量
+                var $showBox = $("#showBox");
+                var $itemBox = $("#fader-nav");
+                var $showBox_item = $showBox.find("a");
+                var $contBox = $("#subBg");
+                var currClass = "fader-cur-nav";
+
+                var i_item = $showBox_item.length;
+                var now = 0;
+
+                var w_showBox = $showBox_item.eq(0).attr("width");
+                var h_showBox = $showBox_item.eq(0).attr("height");
+
+
+
+
+                function scrollPic() {
+                    now++; //版面数累加
+                    if (now == i_item) {
+                        now = 0;
+                        mm(0);
+                    } else {
+                        mm(now);
+                    }
+                }
+
+
+                $.each($showBox_item,function(i){
+                    $(this).parents("li").css("height",h_showBox);
+
+                    //写入数字点击项目
+                    $itemBox.append('<span>' + (i + 1) + '</span>');
+
+                });
+                //初始化写入
+                $showBox.parent().css("width",w_showBox);
+                $showBox.parent().css("height",h_showBox);
+                $showBox_item.eq(0).animate({"opacity":1},800)
+                $itemBox.find("span").eq(0).addClass(currClass);
+                $contBox.text($showBox_item.eq(0).find("img").attr("alt")).animate({"height":"36px"},800);
+
+                //点击数字项目
+                $itemBox.find("span").bind("click",function(){
+                    var $index = $itemBox.find("span").index(this); //索引出当前点击在列表中的位置值
+                    now = $index;
+                    mm($index);
+                });
+
+
+                //自动播放
+                var autoPlay = function () {
+                    autoStop();
+                    timerID = setInterval(scrollPic, 6000);
+                };
+                var autoStop = function () {
+                    clearInterval(timerID);
+                };
+                autoPlay();
+
+
+                function mm(k){
+                    if(!$showBox_item.is(":animated")){
+                        $contBox.animate({"height":"0"},100);
+                        $showBox_item.eq(k).addClass("showBox_cur").animate({"opacity":1},800).siblings().removeClass("showBox_cur").animate({"opacity":0},800);
+                        $itemBox.find("span").eq(k).addClass(currClass).siblings().removeClass(currClass);
+                        //写入文字标题和文字描述
+                        $contBox.text($showBox_item.eq(k).find("img").attr("alt")).animate({"height":"36px"},800);
+                    }
+                }
+
+
+                $showBox.bind({
+                    mouseenter:function(){
+                        autoStop();
+                    },
+                    mouseleave:function(){
+                        autoPlay();
+                    }
+                });
+
+
+
+
+
+            })
+
+
+
+        })();
+    </script>
+</head>
+<body>
+<div id="fader">
+    <div id="showBox">
+        <a href=""><img src="http://p1.mb5u.com/texiao/1/20110225160603668.jpg" alt="我是图片1" /></a>
+        <a href=""><img src="http://p1.mb5u.com/texiao/1/20110225160603669.jpg" alt="我是图片2" /></a>
+        <a href=""><img src="http://p1.mb5u.com/texiao/1/20110225160603670.jpg" alt="我是图片3" /></a>
+        <a href=""><img src="http://p1.mb5u.com/texiao/1/20110225160603671.jpg" alt="我是图片4" /></a>
+        <a href=""><img src="http://p1.mb5u.com/texiao/1/20110225160603672.jpg" alt="我是图片5" /></a>
+    </div>
+    <p id="subBg">暂无文字</p>
+    <div id="fader-nav">
+       
+    </div>
+</div>
+</body>
+</html>
