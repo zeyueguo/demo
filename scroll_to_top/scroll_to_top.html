@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title></title>
+    <script type="text/javascript" src="../libs/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+      /*  $(function(){
+            var tpl = '<div id="scrollTop" style="display: none; width: 40px; height: 40px; background: url(scroll_to_top.png) 0 0 no-repeat; position:fixed; right: 50px; bottom: 100px;"></div>'
+            $(window).scroll(function () {
+                $("body").append(tpl);
+                $("#scrollTop").click(function(){
+                    if(document.documentElement.scrollTop){
+                        document.documentElement.scrollTop=100;
+                    }else{
+                        document.body.scrollTop=100;
+                    }
+                });
+
+                console.log($(this).scrollTop());
+                if ($(this).scrollTop() > 800) {
+                    $("#scrollTop").fadeIn(1000);
+                } else {
+                    $("#scrollTop").fadeOut(1000);
+                }
+            });
+        })
+        */
+
+       var scroll_toTop = function (id) {
+           this.initialize(id);
+       };
+        scroll_toTop.prototype = {
+            initialize:function(id){
+                var othis = this;
+                var tpl = '<div id="scrollTop" style="display: none; width: 40px; height: 40px; background: url(scroll_to_top.png) 0 0 no-repeat; position:fixed; right: 50px; bottom: 100px;"></div>'
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                this.onScroll();
+            },
+            onScroll:function(){
+
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="height: 1500px;">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+</html>
