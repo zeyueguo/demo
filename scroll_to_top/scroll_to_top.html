@@ -65,12 +65,79 @@
             this.animateWanChen = false;
 
             this.creatDiv();
-            this.scroll_evt(this.div,this.height);
+//            this.scroll_evt(this.div,this.height,this.animateWanChen);
+
+            !+[1,] ? this.isIE = true : this.isIE = false;
+
+//            var _fadeIn = this.fadeIn;
+//            var _fadeOutn = this.fadeOut;
+//            var _scrollToTopn = this.scrollToTop;
+//            var _div = this.div;
+////            var _timer_fadeIn,timer_fadeOut,timer_scrollToTop;
+
+            this.flag_fade = "hide";
+           var flag_fade = this.flag_fade;
+            var oDiv = this.div;
+
+            window.onscroll = function(){
+
+                var _scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+
+                if(_scrollTop > h_scroll){
+
+                    if(oDiv.style.opacity == 0){
+                       var timer_fadeIn = setInterval(animate_fadeIn,100);
+                        var num_fadeIn = 0;
+                        function animate_fadeIn(){
+                            if (num_fadeIn>10){
+//                                console.log(num_fadeIn,flag_fade);
+                                clearInterval(timer_fadeIn);
+                                flag_fade = "show";
+                            } else {
+                                oDiv.style.opacity = num_fadeIn / 10;
+                                if(this.isIE){
+                                    oDiv.style.filter = "alpha(opacity=" + num_fadeIn*10 + ")";
+                                }
+                                num_fadeIn++;
+                            }
+                        }
+                    }
+                } else {
+                    if(oDiv.style.opacity == 1){
+                        var timer_fadeOut  = setInterval(animate_fadeOut,100);
+                        var num_fadeOut = 10;
+                        function animate_fadeOut(){
+                            if (num_fadeOut<0){
+                                clearInterval(timer_fadeOut);
+                                flag_fade = false;
+                            } else {
+                                oDiv.style.opacity = num_fadeOut / 10;
+                                if(this.isIE){
+                                    oDiv.style.filter = "alpha(opacity=" + num_fadeIn*10 + ")";
+                                }
+                                num_fadeOut--;
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        scroll:function(h_scroll){
+
         },
         creatDiv:function(){
             var oDiv = document.createElement("div");
             oDiv.setAttribute("id","div_scroll");
-            oDiv.setAttribute("style","opacity: 0; filter:alpha(opacity=0); width: 40px; height: 40px; background: url(scroll_to_top.png) 0 0 no-repeat; position:fixed; right: 50px; bottom: 100px; cursor : pointer;");
+
+            var styleData = 'opacity: 0; filter:alpha(opacity=0); width: 40px; height: 40px; background: url(scroll_to_top.png) 0 0 no-repeat; position:fixed; right: 50px; bottom: 100px; cursor : pointer;';
+
+            if(this.isIE){
+                oDiv.style.setAttribute('cssText', styleData);
+            } else {
+                oDiv.setAttribute('style', styleData);
+            }
+
             document.getElementsByTagName("body")[0].appendChild(oDiv);
             var _animate = this.animate;
             oDiv.onclick = function(){
@@ -84,83 +151,78 @@
             }
             this.div = oDiv;
         },
-        scroll_evt:function(div,h_scroll){
-            var _animate = this.animate;
-           var _animateWanChen =  this.animateWanChen;
-            var _flag_fade = false;
-            window.onscroll = function(){
-                var _scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-                if(_scrollTop > h_scroll){
-                    if (!_flag_fade){
-                        _animate(div,"fadeIn",_animateWanChen);
-                        _flag_fade = true;
-                    }
+        fadeIn:function(elem,timer_fadeIn){
+            this.timer_fadeIn = setInterval(animate_fadeIn,100);
+            var num_fadeIn = 0;
+            function animate_fadeIn(){
+                if (num_fadeIn>10){
+                    clearInterval(this.timer_fadeIn);
+                    this.flag_fade = "show";
                 } else {
-                    if (_flag_fade){
-                        _animate(div,"fadeOut",_animateWanChen);
-                        _flag_fade = false;
+                    elem.style.opacity = num_fadeIn / 10;
+                    if(this.isIE){
+                        elem.style.filter = "alpha(opacity=" + num_fadeIn*10 + ")";
+                    }
+                    num_fadeIn++;
+                }
+            }
+//            console.log(this.timer_fadeIn);
+        },
+        fadeOut:function(elem){
+            this.timer_fadeOut  = setInterval(animate_fadeOut,100);
+            var num_fadeOut = 10;
+            function animate_fadeOut(){
+                if (num_fadeOut<0){
+                    clearInterval(this.timer_fadeOut);
+//                    console.log(22);
+                    this.flag_fade = false;
+                } else {
+                    elem.style.opacity = num_fadeOut / 10;
+                    if(this.isIE){
+                        elem.style.filter = "alpha(opacity=" + num_fadeIn*10 + ")";
+                    }
+                    num_fadeOut--;
+                }
+            }
+//            console.log(this.timer_fadeOut);
+        },
+        scrollToTop:function(elem){
+            var timer_scrollToTop = setInterval(animate_scrollToTop,100);
+            function animate_scrollToTop(){
+                var num_scrollToTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                num_scrollToTop = num_scrollToTop - num_scrollToTop * 0.3;
+                if (num_scrollToTop<=0){
+                    clearInterval(timer_scrollToTop);
+                } else {
+                    if(document.documentElement.scrollTop){
+                        document.documentElement.scrollTop = num_scrollToTop;
+                    } else {
+                        document.body.scrollTop = num_scrollToTop;
                     }
                 }
-
             }
-        },
-        animate:function(elem,type){
+        }
+       /* ,
+        animate:function(elem,type,animateWanChen){
             switch(type){
                case "fadeIn":
-                   var timer_fadeIn = setInterval(animate_fadeIn,100);
-                   var num_fadeIn = 0;
-                    function animate_fadeIn(){
-                        if (num_fadeIn>10){
-                           clearInterval(timer_fadeIn);
-                       } else {
-                            elem.style.opacity = num_fadeIn / 10;
-                            if(!+[1,]){
-                                elem.style.filter = "alpha(opacity=" + num_fadeIn*10 + ")";
-                            }
-                            num_fadeIn++;
-                        }
-                    }
+
                break;
                case "fadeOut":
-                   var timer_fadeOut  = setInterval(animate_fadeOut,100);
-                   var num_fadeOut = 10;
-                    function animate_fadeOut(){
-                       if (num_fadeOut<0){
-                           clearInterval(timer_fadeOut);
-                       } else {
-                           elem.style.opacity = num_fadeOut / 10;
-                           if(!+[1,]){
-                               elem.style.filter = "alpha(opacity=" + num_fadeIn*10 + ")";
-                           }
-                           num_fadeOut--;
-                       }
-                    }
+
 
                break;
                case "scrollToTop":
-                   var timer_scrollToTop = setInterval(animate_scrollToTop,100);
-                   function animate_scrollToTop(){
-                       var num_scrollToTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-                       num_scrollToTop = num_scrollToTop - num_scrollToTop * 0.3;
-                       if (num_scrollToTop<=0){
-                          clearInterval(timer_scrollToTop);
-                       } else {
-                           if(document.documentElement.scrollTop){
-                               document.documentElement.scrollTop = num_scrollToTop;
-                           } else {
-                               document.body.scrollTop = num_scrollToTop;
-                           }
-                       }
-                   }
-               break;
-           }
 
-        }
+               break;
+
+           }
+        }*/
 
 
     }
 
-    window.onload =   new scroll_toTop(600);
+    window.onload =   new scroll_toTop(700);
 
 
 </script>
