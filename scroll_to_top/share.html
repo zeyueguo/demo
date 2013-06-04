@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title></title>
+    <!--<script type="text/javascript" src="http://skin.kankanews.com/v5/libs/jquery/jquery-1.9.1.min.js"></script>-->
+    <style type="text/css">
+         /*--分享--*/
+        .share{  position: absolute; right:30px; top:200px; z-index:100; height:135px;}
+        .share ul.tb_list li{ width:30px; height:30px; display:block; margin-bottom:5px;}
+        .share ul.tb_list li a.sina:link,.share ul.tb_list li a.sina:visited{ background:#aaa url(http://skin.kankanews.com/v5/images/icon_share.png) no-repeat; _background:#aaa url(http://skin.kankanews.com/v5/images/icon_share.gif) no-repeat; background-position:0 0; display:block; width:30px; height:30px;}
+        .share ul.tb_list li:hover a.sina,.share ul.tb_list li.hover a.sina{ background:#f70b19 url(http://skin.kankanews.com/v5/images/icon_share.png) no-repeat; _background:#f70b19 url(http://skin.kankanews.com/v5/images/icon_hover.gif) no-repeat !important; background-position:0 0;}
+
+        .share ul.tb_list li a.qq:link,.share ul.tb_list li a.qq:visited{ background:#aaa url(http://skin.kankanews.com/v5/images/icon_share.png) no-repeat; _background:#aaa url(http://skin.kankanews.com/v5/images/icon_share.gif) no-repeat; background-position:0 -35px; display:block; width:30px; height:30px;}
+        .share ul.tb_list li:hover a.qq,.share ul.tb_list li.hover a.qq{ background:#41c7ec url(http://skin.kankanews.com/v5/images/icon_share.png) no-repeat; _background:#41c7ec url(http://skin.kankanews.com/v5/images/icon_hover.gif) no-repeat !important; background-position:0 -35px;}
+
+        .share ul.tb_list li span.add{ background:#aaa url(http://skin.kankanews.com/v5/images/icon_share.png) no-repeat; _background:#aaa url(http://skin.kankanews.com/v5/images/icon_share.gif) no-repeat; background-position:0 -70px; display:block; width:30px; height:30px; cursor:pointer;}
+        .share ul.tb_list li:hover span.add{ background:#c70025 url(http://skin.kankanews.com/v5/images/icon_share.png) no-repeat; _background:#c70025 url(http://skin.kankanews.com/v5/images/icon_hover.gif) no-repeat !important; background-position:0 -70px;}
+
+        .share_pop{ position:absolute; top:-4px; right:30px; background:url(http://skin.kankanews.com/v5/images/share_top.png) no-repeat; _background:url(http://skin.kankanews.com/v5/images/share_top.gif) no-repeat; width:148px; padding-top:6px;}
+        .share_pop_con{ background:url(http://skin.kankanews.com/v5/images/share_con.png) repeat-y; _background:url(http://skin.kankanews.com/v5/images/share_con.gif) repeat-y; padding:0 15px; width:118px; overflow:hidden; position:relative; height:123px;}
+        .share_pop_bot{ background:url(http://skin.kankanews.com/v5/images/share_bot.png) no-repeat; _background:url(http://skin.kankanews.com/v5/images/share_bot.gif) no-repeat; width:148px; height:6px; overflow:hidden;}
+        .arrw_r{ position:absolute; width:9px; height:12px; z-index:200; right:-3px; bottom:31px; background:url(http://skin.kankanews.com/v5/images/arrw_r.png) no-repeat; _background:url(http://skin.kankanews.com/v5/images/arrw_r.gif) no-repeat;}
+
+        .share_pop_con li{ height:30px; line-height:30px; border-bottom:1px dotted #ccc; width:118px !important; display:block; margin:0 !important;}
+        .share_pop_con li a:link,.share_pop_con li a:visited{ padding-left:30px; color:#666; font-size:12px; font-family:"宋体"; background-color:#fff; width:88px !important; display:block;}
+        .share_pop_con a.sina_1{ background:#fff url(http://skin.kankanews.com/v5/images/icon_other.gif) no-repeat 0 5px !important;}
+        .share_pop_con a.qq_1{ background:#fff url(http://skin.kankanews.com/v5/images/icon_other.gif) no-repeat 0 -26px !important;}
+        .share_pop_con a.kx_1{ background:#fff url(http://skin.kankanews.com/v5/images/icon_other.gif) no-repeat 0 -57px !important;}
+        .share_pop_con a.bdtb_1{ background:#fff url(http://skin.kankanews.com/v5/images/icon_other.gif) no-repeat 0 -88px !important;}
+
+        .backtop{ background:url(http://skin.kankanews.com/v5/images/bg_inside.gif) no-repeat; width:30px; height:30px; background-position:0 -37px; position:absolute; bottom:0; cursor:pointer; display:none;}
+    </style>
+</head>
+<body>
+<div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="height: 7500px;">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+<div class="share" id="scroll_div">
+    <ul class="tb_list" id="fenxiang" data-main="国地税合并短期或难完成 地税税收萎缩引不安"><li class=""><a class="sina" target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=国地税合并短期或难完成 地税税收萎缩引不安&amp;url=http://www.kankanews.com/BChouse/news/2013-05-27/2991211.shtml"></a></li><li class=""><a class="qq" target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://www.kankanews.com/BChouse/news/2013-05-27/2991211.shtml&amp;title=国地税合并短期或难完成 地税税收萎缩引不安"></a></li><li class=""> <span class="add"></span><div class="share_pop" style="display: none;"><div class="share_pop_con"><div class="arrw_r"></div><ul class="fn-clearfix"><li><a class="sina_1" target="_blank" href="http://service.t.sina.com.cn/share/share.php?appkey=2579900422&amp;ralateUid=1845864154&amp;title=国地税合并短期或难完成 地税税收萎缩引不安&amp;url=http://www.kankanews.com/BChouse/news/2013-05-27/2991211.shtml">新浪微博</a></li><li><a class="qq_1" target="_blank" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://www.kankanews.com/BChouse/news/2013-05-27/2991211.shtml&amp;title=国地税合并短期或难完成 地税税收萎缩引不安">腾讯微博</a></li><li class=""><a class="kx_1" target="_blank" href="http://www.kaixin001.com/repaste/share.php?rtitle=国地税合并短期或难完成 地税税收萎缩引不安&amp;rurl=http://www.kankanews.com/BChouse/news/2013-05-27/2991211.shtml">开心网</a></li><li><a class="bdtb_1" onclick="void(function(){var d=document,e=encodeURIComponent,u='http://tieba.baidu.com/i/app/open_share_api?link='+e(d.location.href),o=function(){if(!window.open(u))location.href=u};if(/Firefox/.test(navigator.userAgent)){setTimeout(o,0)}else{o()};return false;})();" title="分享到百度贴吧" href="javascript:void(0)">百度贴吧</a></li></ul></div><div class="share_pop_bot"></div></div></li></ul>
+    <div class="backtop" id="btn_gotop" style="display: none;"></div>
+</div>
+
+</body>
+<script type="text/javascript">
+
+
+    var scroll_share = function (h) {
+        this.initialize(h);
+    };
+
+    scroll_share.prototype = {
+        initialize:function(h){
+            var oThis = this;
+
+            this.div = document.getElementById("scroll_div");
+
+            this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+            this.h_scroll = h ?  h : this.div.offsetTop; //设置缺省高度
+
+            !-[1,] ? this.isIE = true : this.isIE = false;  //判断是不是IE6-8
+
+            window.onscroll = function(){ //绑定用户滚动事件
+                var _scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+//                var oScrollTop = oThis.scrollTop;
+
+                if( _scrollTop > oThis.h_scroll ){
+//                    console.log(_scrollTop,oThis.div.style.top);
+//                    oThis.div.style.position = _scrollTop - 200 + "px";
+                    oThis.div.style.top = "0px";
+                    oThis.div.style.position = "fixed";
+                    var backTop = document.getElementById("btn_gotop");
+
+                    if(_scrollTop>500){
+                        backTop.style.display = "block";
+                    } else {
+                        backTop.style.display = "none";
+                    }
+               } else {
+                    oThis.div.style.top = "200px";
+                    oThis.div.style.position = "absolute";
+               }
+
+            }
+
+
+        }
+
+    }
+
+    window.onload =   new scroll_share();
+
+
+</script>
+</html>
